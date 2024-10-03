@@ -76,3 +76,21 @@ function playBall() {
 }
 
 
+document.addEventListener('DOMContentLoaded', () => {
+  const audio = document.getElementById('prank-audio');
+
+  const playAudio = () => {
+      audio.play().catch(() => {
+          document.body.addEventListener('click', () => {
+              audio.play();
+          }, { once: true });
+      });
+  };
+
+  playAudio();
+
+  document.body.addEventListener('click', () => {
+      audio.currentTime = 0; 
+      audio.play();          
+  });
+});
